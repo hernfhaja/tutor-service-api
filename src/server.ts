@@ -3,11 +3,12 @@
 import build from './app'
 
 const server = build()
+const PORT = process.env.PORT || 3000
 
 if (require.main === module) {
   const start = async () => {
     try {
-      await server.listen(3000)
+      await server.listen(PORT)
       server.blipp()
     } catch (err) {
       server.log.error(err)
