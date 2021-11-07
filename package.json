@@ -4,11 +4,13 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
+    "postinstall": "tsc",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node -r ts-node/register ./src/server.ts",
     "dev": "nodemon",
     "test": "jest",
+    "watch-ts": "tsc -w",
     "prepare": "husky install",
     "release": "standard-version",
     "release:major": "standard-version --release-as major",
