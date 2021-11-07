@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "postinstall": "tsc",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node -r ts-node/register ./src/server.ts",
