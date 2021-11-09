@@ -5,8 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "tsc": "tsc",
-    "postinstall": "npm run tsc",
+    "postinstall": "npm run build",
     "prestart": "npm run build",
     "start": "node -r ts-node/register ./src/server.ts",
     "dev": "nodemon",
