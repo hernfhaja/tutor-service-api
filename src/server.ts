@@ -2,6 +2,7 @@
 
 import build from './app'
 
+require('dotenv').config();
 const server = build()
 const PORT = process.env.PORT || 3000
 
