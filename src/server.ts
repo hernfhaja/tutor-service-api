@@ -1,9 +1,13 @@
 'use strict'
+const express = require('express')
+const app = express()
 
 import build from './app'
 
 require('dotenv').config();
 const server = build()
+app.use(express.static('build'));
+
 const PORT = process.env.PORT || 3000
 
 if (require.main === module) {
