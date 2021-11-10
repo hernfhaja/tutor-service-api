@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "store-paticipants-executor",
+    "name": "store-paticipants",
+    "region": "ap-southeast-1"
+  },
+  "api": {
+    "id": "5redl1yeu8"
+  }
+}
