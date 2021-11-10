@@ -5,11 +5,10 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "postinstall": "npm run build",
-    "start": "node -r ts-node/register ./src/server.ts",
-    "dev": "nodemon",
+    "prestart": "npm run build",
+    "start": "node -r ts-node/register ./src/server.ts ts-node",
+    "dev": "nodemon -x ts-node src/config/server.ts",
     "test": "jest",
-    "prepare": "husky install",
     "release": "standard-version",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
@@ -23,6 +22,7 @@
   "dependencies": {
     "aws-lambda-fastify": "^1.4.4",
     "claudia-api-builder": "^4.1.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fastify": "^3.15.0",
     "fastify-autoload": "^3.7.1",
@@ -31,8 +31,9 @@
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.7.0",
     "husky": "^7.0.4",
+    "mssql": "^7.2.1",
     "mysql": "^2.18.1",
-    "pg": "^8.6.0",
+    "pg": "^8.7.1",
     "pino-pretty": "^4.7.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.32"
