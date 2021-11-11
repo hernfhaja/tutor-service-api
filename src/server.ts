@@ -8,7 +8,7 @@ require('dotenv').config();
 const server = build()
 app.use(express.static('build'));
 
-var PORT = process.env.PORT || 3000
+var PORT = process.env.PORT || 5000
 
 if (require.main === module) {
   const start = async () => {
