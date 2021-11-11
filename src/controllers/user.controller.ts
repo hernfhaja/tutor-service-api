@@ -63,7 +63,8 @@ export default class UserController {
   })
   async createUser(req, reply) {
     try {
-      const createUser = await this.userService.createUser(req.body.userData)
+      console.log(req.body)
+      const createUser = await this.userService.createUser(req.body)
 
       console.log("Create user status : " , createUser)
       reply.status(200).send({messege : "Insert complete" , status : 1})
@@ -85,7 +86,7 @@ export default class UserController {
       reply.status(200).send({messege : "update complete" , status : 1})
       
     } catch (error) {
-      reply.status(500).send({messege : error , status : 2})
+      reply.status(500).send({messege : error, status : 2})
     }
   }
 
