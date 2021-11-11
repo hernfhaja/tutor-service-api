@@ -15,7 +15,7 @@ export default class UserController {
   async getAllData(req, reply) {
     try {
       const userData = await this.userService.getAllData()
-      reply.status(200).send(userData)
+      reply.status(200).send(userData.rows)
     } catch (error) {
       reply.status(500).send(error)
     }
