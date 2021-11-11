@@ -9,6 +9,19 @@ export default class MedController {
   private medService = getInstanceByToken<MedService>(MedService);
 
   @GET({
+    url: '/',
+    options: {},
+  })
+  async getMedData(req, reply) {
+    try {
+      const medData = await this.medService.getMedData()
+      reply.status(200).send(medData.rows)
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+  }
+  
+  @GET({
     url: '/:uid',
     options: {},
   })

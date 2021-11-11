@@ -3,7 +3,7 @@ const {excuteQuery} = require("../config/dbConnection")
 
 export default class medDataRepository {
 
-    async select_All_FromMedTable( email , password ) {
+    async select_All_FromMedTable( ) {
        
         const sql = 'select * from meddata'
         const data = await excuteQuery(sql, [])
@@ -22,14 +22,14 @@ export default class medDataRepository {
    
     async insertToMedTable(medData) {
        
-        const sql = `INSERT INTO meddata (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling   ) VALUES ("${  medData.uid}","${  medData.date}","${  medData.time}" ,"${  medData.medDuration}" ,"${  medData.medMethod}" ,"${  medData.medFeelling }","${  medData.percentRelax }","${  medData.percentFeelling}" )`
+        const sql = `INSERT INTO meddata (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,'${  medData.medDuration}' ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp )`
         const data = await excuteQuery(sql, [])
         return data;
     }
 
     async updateToMedTable(  medData) {
        
-        const sql = `UPDATE    med  SET   email = "${  medData.email}" , password = "${  medData.password}" , name = "${  medData.name}"  , surname = "${  medData.surname}" , nickname = "${  medData.nickname}" , grade = "${  medData.grade}" , school = "${  medData.school}" , province = "${  medData.province}" , phoneNumber =  ${  medData.phoneNumber} WHERE id LIKE ${  medData.id}`
+        const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , '${  medData.medDuration}' , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentFeelling},current_timestamp) WHERE id = ${ medData.id}`
         const data = await excuteQuery(sql, [])
         return data;
     }

@@ -9,6 +9,14 @@ export default class MedService {
   @Initializer()
   async init(): Promise<void> {
   }
+
+  async getMedData() {
+    
+    const getMedData = medDataRepo.select_All_FromMedTable()
+      
+        return getMedData
+       
+    }
   
   async getMedDataByid(uid) {
     
