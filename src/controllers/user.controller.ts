@@ -66,10 +66,10 @@ export default class UserController {
       const createUser = await this.userService.createUser(req.body.userData)
 
       console.log("Create user status : " , createUser)
-      reply.status(200).send("insert complete")
+      reply.status(200).send({messege : "Insert complete" , status : 1})
 
     } catch (error) {
-      reply.status(500).send(error)
+      reply.status(500).send({messege : error , status : 2})
     }
   }
 
@@ -82,10 +82,10 @@ export default class UserController {
       const update = await this.userService.updateUserData(req.body.userData)
 
       console.log("update user status : " , update)
-      reply.status(200).send("update complete")
+      reply.status(200).send({messege : "update complete" , status : 1})
       
     } catch (error) {
-      reply.status(500).send(error)
+      reply.status(500).send({messege : error , status : 2})
     }
   }
 

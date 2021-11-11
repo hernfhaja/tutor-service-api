@@ -43,10 +43,10 @@ export default class MedController {
           const createMedData = await this.medService.createMedData(req.body.medData)
     
           console.log("Create med status : " , createMedData)
-          reply.status(200).send("insert complete")
+          reply.status(200).send({messege : "insert complete" , status : 1})
     
         } catch (error) {
-          reply.status(500).send(error)
+          reply.status(500).send({messege : error , status : 2})
         }
   }
   
@@ -59,10 +59,10 @@ export default class MedController {
       const createMedData = await this.medService.updateMedData(req.body.medData)
 
       console.log("update med status : " , createMedData)
-      reply.status(200).send("update complete")
+      reply.status(200).send({messege : "update complete" , status : 1})
 
     } catch (error) {
-      reply.status(500).send(error)
+      reply.status(500).send({messege : error , status : 2})
     }
   }
 
