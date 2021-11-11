@@ -48,7 +48,7 @@ export default class userDataRepository {
 
     async updateToUserTable(userData) {
        
-        const sql = `update userdata SET ( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) = ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , ${userData.phoneNumber} , current_timestamp ) where id = ${userData.uid}`;
+        const sql = `update userdata SET ( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) = ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , ${userData.phoneNumber} , current_timestamp ) where id = ${userData.id}`;
         const data = await excuteQuery(sql, [])
         
         return data;
