@@ -3,7 +3,7 @@ const {excuteQuery , client} = require("../config/dbConnection")
 
 export default class userDataRepository {
 
-    async select_All_FromUserTable(email , password ) {
+    async select_All_FromUserTable( ) {
        
         const sql = 'select * from userdata'
         const data = await excuteQuery(sql, [])

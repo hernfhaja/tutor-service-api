@@ -9,6 +9,19 @@ export default class UserController {
   private userService = getInstanceByToken<UserService>(UserService);
 
   @GET({
+    url: '/',
+    options: {},
+  })
+  async getAllData(req, reply) {
+    try {
+      const userData = await this.userService.getAllData()
+      reply.status(200).send(userData)
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+  }
+
+  @GET({
     url: '/:uid',
     options: {},
   })

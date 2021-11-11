@@ -1,4 +1,4 @@
-import { error } from 'console';
+
 import { Service, Initializer, Destructor } from 'fastify-decorators';
 import UserDataRepository from '../repositories/userData.repository';
 
@@ -9,6 +9,18 @@ export default class LoginService {
   @Initializer()
   async init(): Promise<void> {
   }
+
+  async getAllData() {
+    
+    const getAllData = userDataRepo.select_All_FromUserTable()
+      if (getAllData !== null) {
+        return getAllData
+      } else {
+        return "get data error"
+      }
+        
+    }
+    
   
   async getUserData(uid) {
     

@@ -1,5 +1,3 @@
-import { error } from 'console';
-import { resolve } from 'core-js/es6/promise';
 
 import { Service, Initializer, Destructor } from 'fastify-decorators';
 import MedDataRepository from '../repositories/med.repository';
