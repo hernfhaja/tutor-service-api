@@ -41,9 +41,9 @@ export default class MedService {
         
   }
   
-  async updateUserData(userData) {
+  async updateMedData(userMedData) {
     
-    const create = medDataRepo.updateToMedTable(userData)
+    const create = medDataRepo.updateToMedTable(userMedData)
       if (create !== null) {
         return create
       } else {

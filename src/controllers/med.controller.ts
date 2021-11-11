@@ -48,7 +48,23 @@ export default class MedController {
         } catch (error) {
           reply.status(500).send(error)
         }
-      }
+  }
+  
+  @POST({
+    url: '/update',
+    options: {},
+  })
+  async updateMedData(req, reply) {
+    try {
+      const createMedData = await this.medService.updateMedData(req.body.medData)
+
+      console.log("update med status : " , createMedData)
+      reply.status(200).send("update complete")
+
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+  }
 
  
 
