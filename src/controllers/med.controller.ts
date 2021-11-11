@@ -28,7 +28,7 @@ export default class MedController {
   async getMedDatabyId(req, reply) {
     try {
       const medData = await this.medService.getMedDataByid(req.params.uid)
-      reply.status(200).send(medData)
+      reply.status(200).send(medData.rows)
     } catch (error) {
       reply.status(500).send(error)
     }

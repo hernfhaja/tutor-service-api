@@ -13,7 +13,7 @@ export default class medDataRepository {
 
     async select_Some_FromMedTableby_Id(uid) {
        
-        const sql = `SELECT * FROM meddata WHERE uid LIKE ${uid}`
+        const sql = `SELECT * FROM meddata WHERE uid = ${uid}`
         const data = await excuteQuery(sql, [])
                       console.log(data)
         return data;
