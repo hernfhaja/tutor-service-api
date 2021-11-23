@@ -40,18 +40,18 @@ export default class UserController {
   })
   async login(req, reply) {
     try {
-      const checklogin = await this.userService.login(req.body.loginData)
+      const checklogin = await this.userService.login(req.body)
       console.log(checklogin)
       if (checklogin == 1)
       {
-        reply.status(500).send({ messege: "password incorrect", status: 2})
+        reply.status(200).send({ messege: "password incorrect", status: 2})
       } else  {
         reply.status(200).send({messege : "Login complete" , status : 1 , uid : `${checklogin}` })
         
       } 
     } catch (error) {
       if (error) {
-        reply.status(500).send({messege :"invalid Email or Email do not exist", status : 3 })
+        reply.status(200).send({messege :"invalid Email or Email do not exist", status : 3 })
       }
       
     }
@@ -70,7 +70,7 @@ export default class UserController {
       reply.status(200).send({messege : "Insert complete" , status : 1})
 
     } catch (error) {
-      reply.status(500).send({messege : error , status : 2})
+      reply.status(200).send({messege : error , status : 2})
     }
   }
 
@@ -80,13 +80,13 @@ export default class UserController {
   })
   async updateUserData(req, reply) {
     try {
-      const update = await this.userService.updateUserData(req.body.userData)
+      const update = await this.userService.updateUserData(req.body)
 
       console.log("update user status : " , update)
       reply.status(200).send({messege : "update complete" , status : 1})
       
     } catch (error) {
-      reply.status(500).send({messege : error, status : 2})
+      reply.status(200).send({messege : error, status : 2})
     }
   }
 

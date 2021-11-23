@@ -1,7 +1,4 @@
 'use strict'
-const express = require('express')
-const app = express()
-const cors = require('cors')
 
 import build from './app'
 
@@ -9,6 +6,9 @@ require('dotenv').config();
 
 const server = build()
 
+const express = require('express')
+const app = express()
+const cors = require('cors')
 app.use(express.static('build'));
 app.use(cors())
 

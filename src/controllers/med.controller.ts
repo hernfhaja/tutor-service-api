@@ -40,7 +40,7 @@ export default class MedController {
       })
       async createMedData(req, reply) {
         try {
-          const createMedData = await this.medService.createMedData(req.body.medData)
+          const createMedData = await this.medService.createMedData(req.body)
     
           console.log("Create med status : " , createMedData)
           reply.status(200).send({messege : "insert complete" , status : 1})
@@ -56,7 +56,7 @@ export default class MedController {
   })
   async updateMedData(req, reply) {
     try {
-      const createMedData = await this.medService.updateMedData(req.body.medData)
+      const createMedData = await this.medService.updateMedData(req.body)
 
       console.log("update med status : " , createMedData)
       reply.status(200).send({messege : "update complete" , status : 1})
@@ -65,10 +65,6 @@ export default class MedController {
       reply.status(500).send({messege : error , status : 2})
     }
   }
-
- 
-
-
 
 }
  
