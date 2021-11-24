@@ -54,5 +54,13 @@ export default class userDataRepository {
         return data;
     }
 
+    async deleteUser(uid) {
+       
+        const sql = `delete from userdata where id = ${uid}`;
+        const data = await excuteQuery(sql, [])
+        
+        return data;
+    }
+
 
   }

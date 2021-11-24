@@ -63,6 +63,17 @@ export default class LoginService {
         return "incomplete create user"
       }
         
+  }
+  
+  async deleteUserData(uid) {
+    
+    const create = userDataRepo.deleteUser(uid)
+      if (create !== null) {
+        return create
+      } else {
+        return "incomplete create user"
+      }
+        
     }
 
  

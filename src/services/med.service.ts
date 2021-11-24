@@ -52,6 +52,16 @@ export default class MedService {
         
     }
 
+    async deleteMedDataById(mid) {
+    
+      const deletMedData = medDataRepo.deleteMedData_By_Id(mid)
+        if (deletMedData !== null) {
+          return deletMedData
+        } else {
+          return "incomplete create user"
+        }
+          
+      }
  
   @Destructor()
   async destroy(): Promise<void> {

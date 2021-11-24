@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { Controller, GET, getInstanceByToken, POST } from 'fastify-decorators';
+import { Controller, DELETE, GET, getInstanceByToken, POST } from 'fastify-decorators';
 import UserService from '../services/user.service';
 
 
@@ -17,7 +17,7 @@ export default class UserController {
       const userData = await this.userService.getAllData()
       reply.status(200).send(userData.rows)
     } catch (error) {
-      reply.status(500).send(error)
+      reply.status(200).send(error)
     }
   }
 
@@ -84,6 +84,22 @@ export default class UserController {
 
       console.log("update user status : " , update)
       reply.status(200).send({messege : "update complete" , status : 1})
+      
+    } catch (error) {
+      reply.status(200).send({messege : error, status : 2})
+    }
+  }
+
+  @DELETE({
+    url: '/delete/:uid',
+    options: {},
+  })
+  async deleteUser(req, reply) {
+    try {
+      const deleteUser = await this.userService.deleteUserData(req.params.uid)
+
+      console.log("deleteUser status : " , deleteUser)
+      reply.status(200).send({messege : "delete complete" , status : 1})
       
     } catch (error) {
       reply.status(200).send({messege : error, status : 2})

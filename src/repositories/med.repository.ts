@@ -34,11 +34,12 @@ export default class medDataRepository {
         return data;
     }
 
+    async deleteMedData_By_Id(mid) {
+       
+        const sql = `delete from meddata where id = ${mid}`
+        const data = await excuteQuery(sql, [])
+        return data;
+    }
     
-    
-
-
-   
-
 
   }

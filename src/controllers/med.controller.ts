@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { Controller, GET, getInstanceByToken, POST } from 'fastify-decorators';
+import { Controller, DELETE, GET, getInstanceByToken, POST } from 'fastify-decorators';
 import MedService from '../services/med.service';
 
 
@@ -50,19 +50,19 @@ export default class MedController {
         }
   }
   
-  @POST({
-    url: '/update',
+  @DELETE({
+    url: '/delete/:mid',
     options: {},
   })
-  async updateMedData(req, reply) {
+  async deleteMedData(req, reply) {
     try {
-      const createMedData = await this.medService.updateMedData(req.body)
+      const deleteMedData = await this.medService.deleteMedDataById(req.params.mid)
 
-      console.log("update med status : " , createMedData)
-      reply.status(200).send({messege : "update complete" , status : 1})
+      console.log("delete med status : " , deleteMedData)
+      reply.status(200).send({messege : "delete complete" , status : 1})
 
     } catch (error) {
-      reply.status(500).send({messege : error , status : 2})
+      reply.status(200).send({messege : error , status : 2})
     }
   }
 
