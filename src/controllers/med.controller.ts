@@ -49,6 +49,24 @@ export default class MedController {
           reply.status(500).send({messege : error , status : 2})
         }
   }
+
+  @GET({
+    url: '/date/:date',
+    options: {},
+  })
+  async getMedDatabydate(req, reply) {
+
+    try {
+      const medDatabydate = await this.medService.getMedDataByDate(req.params.date)
+
+      console.log("meddata status : " , medDatabydate.rows)
+      reply.status(200).send( medDatabydate.rows)
+
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+}
+  
   
   @POST({
     url: '/update',
@@ -69,7 +87,7 @@ export default class MedController {
   @DELETE({
     url: '/delete/:mid',
     options: {},
-  })
+  }) 
   async deleteMedData(req, reply) {
     try {
       const deleteMedData = await this.medService.deleteMedDataById(req.params.mid)
@@ -80,7 +98,7 @@ export default class MedController {
     } catch (error) {
       reply.status(200).send({messege : error , status : 2})
     }
-  }
+  } 
 
 }
  

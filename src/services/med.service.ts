@@ -27,6 +27,17 @@ export default class MedService {
         return "select data error"
       }
         
+  }
+  
+  async getMedDataByDate(date) {
+    
+    const getMedData = medDataRepo.select_Some_FromMedTableby_date(date)
+      if (getMedData !== null) {
+        return getMedData
+      } else {
+        return "select data error"
+      }
+        
     }
     
 
@@ -40,7 +51,8 @@ export default class MedService {
       }
         
   }
-  
+
+    
   async updateMedData(userMedData) {
     
     const create = medDataRepo.updateToMedTable(userMedData)

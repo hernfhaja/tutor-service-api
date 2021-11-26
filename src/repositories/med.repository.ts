@@ -19,10 +19,18 @@ export default class medDataRepository {
         return data;
     }
 
+    async select_Some_FromMedTableby_date(date) {
+       
+        const sql = `SELECT * FROM meddata WHERE date = '${date}'`
+        const data = await excuteQuery(sql, [])
+                      console.log(data)
+        return data;
+    }
+
    
     async insertToMedTable(medData) {
        
-        const sql = `INSERT INTO meddata (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,'${  medData.medDuration}' ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp )`
+        const sql = `INSERT INTO meddata (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,'${medData.medDuration}' ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp )`
         const data = await excuteQuery(sql, [])
         return data;
     }
