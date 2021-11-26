@@ -35,6 +35,30 @@ export default class UserController {
   }
 
   @POST({
+    url: '/checkemail',
+    options: {},
+  })
+  async checkemail(req, reply) {
+    console.log(req.body)
+    try {
+      const checkemail = await this.userService.checkemail(req.body)
+      console.log("check email : " , checkemail)
+      if (checkemail == 1)
+      {
+        reply.status(200).send({ messege: "email already exist", status: 0})
+      } else {
+        reply.status(200).send({messege :"you can use this email", status : 1 })
+      }
+    } catch (error) {
+      if (error) {
+        reply.status(500).send(error)
+      }
+      
+    }
+  }
+
+
+  @POST({
     url: '/login',
     options: {},
   })
@@ -42,7 +66,7 @@ export default class UserController {
     try {
       const checklogin = await this.userService.login(req.body)
       console.log(checklogin)
-      if (checklogin == 1)
+      if (checklogin == 0)
       {
         reply.status(200).send({ messege: "password incorrect", status: 2})
       } else  {
@@ -62,16 +86,20 @@ export default class UserController {
     options: {},
   })
   async createUser(req, reply) {
+   
+    const checkemail = await this.userService.checkemail(req.body)
+    console.log(req.body)
     try {
-      console.log(req.body)
-      const createUser = await this.userService.createUser(req.body)
-
-      console.log("Create user status : " , createUser)
-      reply.status(200).send({messege : "Insert complete" , status : 1})
+        const createUser = await this.userService.createUser(req.body)
+        console.log("Create user status : " , createUser)
+        reply.status(200).send({ messege: "Insert complete", status: 1 })
 
     } catch (error) {
-      reply.status(200).send({messege : error , status : 2})
+      reply.status(200).send(error)
     }
+      
+    
+      
   }
 
   @POST({

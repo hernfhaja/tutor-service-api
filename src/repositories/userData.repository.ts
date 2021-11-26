@@ -21,7 +21,7 @@ export default class userDataRepository {
         return data.rows[0];
     }
 
-    async select_Some_FromUserTableby_Email(email, pass) {
+    async select_Some_FromUserTableby_Email_ForLogin(email, pass) {
         
         const sql = `select * from userdata where email = '${email}'`
         const data = await excuteQuery(sql, [])
@@ -34,10 +34,29 @@ export default class userDataRepository {
                      return data.rows[0].id;
                 } else {
                 // invalid password
-                return 1
+                return 0
             }
         }
     }
+
+    async select_Some_FromUserTableby_Email(email) {
+        
+        const sql = `select * from userdata where email = '${email}'`
+        const data = await excuteQuery(sql, [])
+
+        console.log(data.rows)
+
+        if (data.rows.length === 0 ) {
+            return 0;
+        } else {
+            return 1
+        }
+        
+    }
+    
+    
+    
+
 
     async insertToUserTable(userData) {
         const sql = `insert into userdata( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) values ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , ${userData.phoneNumber} , current_timestamp )`;

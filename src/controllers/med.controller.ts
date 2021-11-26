@@ -50,6 +50,22 @@ export default class MedController {
         }
   }
   
+  @POST({
+    url: '/update',
+    options: {},
+  })
+  async update(req, reply) {
+    try {
+      const updateMedData = await this.medService.updateMedData(req.body)
+
+      console.log("update med status : " , updateMedData)
+      reply.status(200).send({messege : "update complete" , status : 1})
+
+    } catch (error) {
+      reply.status(500).send({messege : error , status : 2})
+    }
+  }
+  
   @DELETE({
     url: '/delete/:mid',
     options: {},

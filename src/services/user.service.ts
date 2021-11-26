@@ -37,9 +37,17 @@ export default class LoginService {
     const email = loginData.email
     const pass = loginData.password
 
-    const checkLogin = userDataRepo.select_Some_FromUserTableby_Email(email,pass)
+    const checkLogin = userDataRepo.select_Some_FromUserTableby_Email_ForLogin(email,pass)
     
     return checkLogin
+        
+  }
+
+  async checkemail(email) {
+   console.log(email.email)
+    const checkEmail = userDataRepo.select_Some_FromUserTableby_Email(email.email)
+    
+    return checkEmail
         
   }
   
