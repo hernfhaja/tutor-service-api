@@ -97,9 +97,7 @@ export default class UserController {
     } catch (error) {
       reply.status(200).send(error)
     }
-      
     
-      
   }
 
   @POST({
