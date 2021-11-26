@@ -18,7 +18,7 @@ function build(opts: object = configApp) {
 
   app.register(require("fastify-cors"), {
       origin: "*",
-      methods: ["POST"]
+      methods: ["POST","DELETE"]
   });
 
    app.register(bootstrap, {
