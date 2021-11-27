@@ -34,10 +34,10 @@ export default class LoginService {
     }
     
   async login(loginData) {
-    const email = loginData.email
+    const phonenumber = loginData.phonenumber
     const pass = loginData.password
 
-    const checkLogin = userDataRepo.select_Some_FromUserTableby_Email_ForLogin(email,pass)
+    const checkLogin = userDataRepo.select_Some_FromUserTableby_phonenumber_ForLogin(phonenumber,pass)
     
     return checkLogin
         

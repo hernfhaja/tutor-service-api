@@ -16,14 +16,13 @@ export default class userDataRepository {
         const sql = `SELECT * FROM userdata WHERE id=${uid}`
         const data = await excuteQuery(sql, [])
         console.log(data.rows[0])
-       
         
         return data.rows[0];
     }
 
-    async select_Some_FromUserTableby_Email_ForLogin(email, pass) {
+    async select_Some_FromUserTableby_phonenumber_ForLogin(phonenumber, pass) {
         
-        const sql = `select * from userdata where email = '${email}'`
+        const sql = `select * from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
         
         console.log( data.rows[0].password )
@@ -59,7 +58,7 @@ export default class userDataRepository {
 
 
     async insertToUserTable(userData) {
-        const sql = `insert into userdata( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) values ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , ${userData.phoneNumber} , current_timestamp )`;
+        const sql = `insert into userdata( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) values ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}'' , current_timestamp )`;
         const data = await excuteQuery(sql, [])
         
         return data;
@@ -67,7 +66,7 @@ export default class userDataRepository {
 
     async updateToUserTable(userData) {
        
-        const sql = `update userdata SET ( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) = ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , ${userData.phoneNumber} , current_timestamp ) where id = ${userData.id}`;
+        const sql = `update userdata SET ( email , password , name , surname , nickname , grade , school , province , phoneNumber , timestamp) = ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}'' , current_timestamp ) where id = ${userData.id}`;
         const data = await excuteQuery(sql, [])
         
         return data;

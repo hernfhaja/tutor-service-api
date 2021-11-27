@@ -47,7 +47,7 @@ export default class UserController {
       {
         reply.status(200).send({ messege: "email already exist", status: 0})
       } else {
-        reply.status(200).send({messege :"you can use this email", status : 1 })
+        reply.status(200).send({messege :"you can use this number", status : 1 })
       }
     } catch (error) {
       if (error) {
