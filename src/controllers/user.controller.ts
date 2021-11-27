@@ -35,17 +35,17 @@ export default class UserController {
   }
 
   @POST({
-    url: '/checkemail',
+    url: '/checkphonenumber',
     options: {},
   })
-  async checkemail(req, reply) {
+  async checkphonenumber(req, reply) {
     console.log(req.body)
     try {
-      const checkemail = await this.userService.checkemail(req.body)
-      console.log("check email : " , checkemail)
-      if (checkemail == 1)
+      const checkphonenumber = await this.userService.checkphonenumber(req.body)
+      console.log("check phonenumber : " , checkphonenumber)
+      if (checkphonenumber == 1)
       {
-        reply.status(200).send({ messege: "email already exist", status: 0})
+        reply.status(200).send({ messege: "phonenumber already exist", status: 0})
       } else {
         reply.status(200).send({messege :"you can use this number", status : 1 })
       }
@@ -53,7 +53,6 @@ export default class UserController {
       if (error) {
         reply.status(500).send(error)
       }
-      
     }
   }
 
@@ -65,7 +64,7 @@ export default class UserController {
   async login(req, reply) {
     try {
       const checklogin = await this.userService.login(req.body)
-      console.log(checklogin)
+      console.log("Check login : " , checklogin)
       if (checklogin == 0)
       {
         reply.status(200).send({ messege: "password incorrect", status: 2})
@@ -75,7 +74,7 @@ export default class UserController {
       } 
     } catch (error) {
       if (error) {
-        reply.status(200).send({messege :"invalid Email or Email do not exist", status : 3 })
+        reply.status(200).send({messege :"invalid PhoneNumber or PhoneNumber do not exist", status : 3 })
       }
       
     }
@@ -87,16 +86,23 @@ export default class UserController {
   })
   async createUser(req, reply) {
    
-    const checkemail = await this.userService.checkemail(req.body)
-    console.log(req.body)
-    try {
-        const createUser = await this.userService.createUser(req.body)
-        console.log("Create user status : " , createUser)
-        reply.status(200).send({ messege: "Insert complete", status: 1 })
-
-    } catch (error) {
-      reply.status(200).send(error)
+    const checkphonenumber = await this.userService.checkphonenumber(req.body)
+    if (checkphonenumber === 0) {
+      console.log(req.body)
+      try {
+          const createUser = await this.userService.createUser(req.body)
+          console.log("Create user status : " , createUser)
+          reply.status(200).send({ messege: "Insert complete", status: 1 })
+  
+      } catch (error) {
+        reply.status(200).send(error)
+      }
+    } else {
+      reply.status(500).send({ message : "this phone number already exist" , status : 500})
     }
+      
+    
+   
     
   }
 

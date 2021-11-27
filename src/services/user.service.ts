@@ -34,7 +34,7 @@ export default class LoginService {
     }
     
   async login(loginData) {
-    const phonenumber = loginData.phonenumber
+    const phonenumber = loginData.phoneNumber
     const pass = loginData.password
 
     const checkLogin = userDataRepo.select_Some_FromUserTableby_phonenumber_ForLogin(phonenumber,pass)
@@ -43,11 +43,11 @@ export default class LoginService {
         
   }
 
-  async checkemail(email) {
-   console.log(email.email)
-    const checkEmail = userDataRepo.select_Some_FromUserTableby_Email(email.email)
+  async checkphonenumber(phonenumber) {
+   console.log(phonenumber.phonenumber)
+    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber(phonenumber.phonenumber)
     
-    return checkEmail
+    return checkphonenumber
         
   }
   
