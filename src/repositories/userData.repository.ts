@@ -43,7 +43,7 @@ export default class userDataRepository {
         const sql = `select * from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
 
-        console.log(data.rows)
+        console.log("check phone number" ,data.rows)
 
         if (data.rows.length === 0  ) {
             return 0;

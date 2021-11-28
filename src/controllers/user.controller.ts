@@ -88,7 +88,6 @@ export default class UserController {
    
     const checkphonenumber = await this.userService.checkphonenumber(req.body)
     if (checkphonenumber === 0) {
-      console.log(req.body)
       try {
           const createUser = await this.userService.createUser(req.body)
           console.log("Create user status : " , createUser)
