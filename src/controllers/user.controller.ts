@@ -97,7 +97,7 @@ export default class UserController {
         reply.status(200).send(error)
       }
     } else {
-      reply.status(500).send({ message : "this phone number already exist" , status : 500})
+      reply.status(200).send({ message : "this phone number already exist" , status : 500})
     }
       
     
@@ -110,15 +110,21 @@ export default class UserController {
     options: {},
   })
   async updateUserData(req, reply) {
-    try {
-      const update = await this.userService.updateUserData(req.body)
-
-      console.log("update user status : " , update)
-      reply.status(200).send({messege : "update complete" , status : 1})
-      
-    } catch (error) {
-      reply.status(200).send({messege : error, status : 2})
+    const checkphonenumber = await this.userService.checkphonenumber(req.body)
+    if (checkphonenumber === 0) {
+      try {
+        const update = await this.userService.updateUserData(req.body)
+  
+        console.log("update user status : " , update)
+        reply.status(200).send({messege : "update complete" , status : 1})
+        
+      } catch (error) {
+        reply.status(200).send({messege : error, status : 2})
+      }
+    } else {
+      reply.status(200).send({ message : "this phone number already exist" , status : 500})
     }
+    
   }
 
   @DELETE({
