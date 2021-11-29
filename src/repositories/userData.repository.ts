@@ -40,12 +40,14 @@ export default class userDataRepository {
 
     async select_Some_FromUserTableby_phonenumber(phonenumber) {
         
-        const sql = `select * from userdata where phonenumber = '${phonenumber}'`
+        const sql = `select phonenumber from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
 
-        console.log("check phone number" ,data.rows)
+        const getPhoneNumber = data.rows[0].phonenumber;
+        console.log("check phone number", data.rows[0].phonenumber)
+       
 
-        if (data.rows.length === 0  ) {
+        if (data.rows.length === 0 || getPhoneNumber == phonenumber  ) {
             return 0;
         } else {
             return 1
@@ -54,9 +56,6 @@ export default class userDataRepository {
     }
     
     
-    
-
-
     async insertToUserTable(userData) {
         const sql = `insert into userdata( email , password , name , surname , nickname , grade , school , province , phonenumber , timestamp) values ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp )`;
         const data = await excuteQuery(sql, [])

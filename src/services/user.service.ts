@@ -43,9 +43,9 @@ export default class LoginService {
         
   }
 
-  async checkphonenumber(phonenumber) {
+  async checkphonenumber(data) {
    
-    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber(phonenumber.phoneNumber)
+    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber(data.phoneNumber)
     
     return checkphonenumber
         
