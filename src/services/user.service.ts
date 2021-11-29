@@ -43,9 +43,17 @@ export default class LoginService {
         
   }
 
-  async checkphonenumber(data) {
+  async checkphonenumber_for_update(data) {
    
-    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber(data.phoneNumber)
+    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber_update(data.phoneNumber,data.id)
+    
+    return checkphonenumber
+        
+  }
+
+  async checkphonenumber_for_create(data) {
+   
+    const checkphonenumber = userDataRepo.select_Some_FromUserTableby_phonenumber_create(data.phoneNumber)
     
     return checkphonenumber
         

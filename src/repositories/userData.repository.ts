@@ -38,21 +38,44 @@ export default class userDataRepository {
         }
     }
 
-    async select_Some_FromUserTableby_phonenumber(phonenumber) {
+    async select_Some_FromUserTableby_phonenumber_update(phonenumber,uid) {
+        
         
         const sql = `select phonenumber from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
 
-        const getPhoneNumber = data.rows[0].phonenumber;
-        console.log("check phone number", data.rows[0].phonenumber)
-       
+        const sql2 = `select phonenumber from userdata where id = ${uid}`
+        const data2 = await excuteQuery(sql2, [])
 
-        if (data.rows.length === 0 || getPhoneNumber == phonenumber  ) {
-            return 0;
+        console.log("check phone number", data.rows[0])
+        console.log("check phone number2", data2.rows[0])
+
+        if (data.rows.length === 0) {
+            return 0
         } else {
-            return 1
+            if (phonenumber == data2.rows[0].phonenumber) {
+                return 0
+            } else {
+                return 1
+            }
         }
+                
+    }
+
+    async select_Some_FromUserTableby_phonenumber_create(phonenumber) {
         
+        
+        const sql = `select phonenumber from userdata where phonenumber = '${phonenumber}'`
+        const data = await excuteQuery(sql, [])
+
+        console.log("check phone number", data.rows[0])
+
+        if (data.rows.length === 0) {
+            return 0
+        } else {    
+            return 1 
+        }
+                
     }
     
     

@@ -34,29 +34,7 @@ export default class UserController {
     }
   }
 
-  @POST({
-    url: '/checkphonenumber',
-    options: {},
-  })
-  async checkphonenumber(req, reply) {
-    console.log(req.body)
-    try {
-      const checkphonenumber = await this.userService.checkphonenumber(req.body)
-      console.log("check phonenumber : " , checkphonenumber)
-      if (checkphonenumber == 1)
-      {
-        reply.status(200).send({ messege: "phonenumber already exist", status: 0})
-      } else {
-        reply.status(200).send({messege :"you can use this number", status : 1 })
-      }
-    } catch (error) {
-      if (error) {
-        reply.status(500).send(error)
-      }
-    }
-  }
-
-
+  
   @POST({
     url: '/login',
     options: {},
@@ -86,8 +64,9 @@ export default class UserController {
   })
   async createUser(req, reply) {
    
-    const checkphonenumber = await this.userService.checkphonenumber(req.body)
+    const checkphonenumber = await this.userService.checkphonenumber_for_create(req.body)
     if (checkphonenumber === 0) {
+      console.log( "create user : " ,checkphonenumber )
       try {
           const createUser = await this.userService.createUser(req.body)
           console.log("Create user status : " , createUser)
@@ -106,7 +85,7 @@ export default class UserController {
     options: {},
   })
   async updateUserData(req, reply) {
-    const checkphonenumber = await this.userService.checkphonenumber(req.body)
+    const checkphonenumber = await this.userService.checkphonenumber_for_update(req.body)
     if (checkphonenumber === 0) {
       try {
         const update = await this.userService.updateUserData(req.body)
