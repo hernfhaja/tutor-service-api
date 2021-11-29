@@ -80,7 +80,7 @@ export default class userDataRepository {
     
     
     async insertToUserTable(userData) {
-        const sql = `insert into userdata( email , password , name , surname , nickname , grade , school , province , phonenumber , timestamp) values ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp )`;
+        const sql = `insert into userdata(  password , name , surname , nickname , grade , school , province , phonenumber , timestamp) values (  '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp )`;
         const data = await excuteQuery(sql, [])
         
         return data;
@@ -88,7 +88,7 @@ export default class userDataRepository {
 
     async updateToUserTable(userData) {
         console.log("update from repo" , userData.phoneNumber)
-        const sql = `update userdata SET ( email , password , name , surname , nickname , grade , school , province , phonenumber , timestamp) = ( '${userData.email}' , '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp ) where id = ${userData.id}`;
+        const sql = `update userdata SET (  password , name , surname , nickname , grade , school , province , phonenumber , timestamp) = (  '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp ) where id = ${userData.id}`;
         const data = await excuteQuery(sql, [])
         
         return data;
