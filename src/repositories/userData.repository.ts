@@ -30,7 +30,7 @@ export default class userDataRepository {
         if (data !== null) {
                 if (data.rows[0].password == pass)
                 {
-                     return data.rows[0].id;
+                     return data.rows[0];
                 } else {
                 // invalid password
                 return 0

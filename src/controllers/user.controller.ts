@@ -47,14 +47,13 @@ export default class UserController {
       {
         reply.status(200).send({ messege: "password incorrect", status: 2})
       } else  {
-        reply.status(200).send({messege : "Login complete" , status : 1 , uid : `${checklogin}` })
+        reply.status(200).send({messege : "Login complete" , status : 1 , data : checklogin} )
         
       } 
     } catch (error) {
       if (error) {
         reply.status(200).send({messege :"invalid PhoneNumber or PhoneNumber do not exist", status : 3 })
       }
-      
     }
   }
 
