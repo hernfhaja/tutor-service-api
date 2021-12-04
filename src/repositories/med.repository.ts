@@ -19,9 +19,26 @@ export default class medDataRepository {
         return data;
     }
 
+    async select_Some_FromMedTableby_dateRang(dateStart , dateEnd , time ) {
+       
+        const sql = `SELECT * FROM meddata WHERE time = '${time}' and date >= '${dateStart}' and date < '${dateEnd}' `
+        const data = await excuteQuery(sql, [])
+                      console.log(data)
+        return data;
+    }
+
+   
+    async select_Some_FromMedTableby_dateToday() {
+       
+        const sql = `SELECT * FROM meddata WHERE date = CURRENT_DATE`
+        const data = await excuteQuery(sql, [])
+                      console.log(data)
+        return data;
+    }
+
     async select_Some_FromMedTableby_date(date) {
        
-        const sql = `SELECT * FROM meddata WHERE date = '${date}'`
+        const sql = `SELECT * FROM meddata WHERE date ='${date}' `
         const data = await excuteQuery(sql, [])
                       console.log(data)
         return data;

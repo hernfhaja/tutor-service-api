@@ -50,17 +50,51 @@ export default class MedController {
         }
   }
 
-  @GET({
-    url: '/date/:date',
+  @POST({
+    url: '/date',
     options: {},
   })
   async getMedDatabydate(req, reply) {
 
     try {
-      const medDatabydate = await this.medService.getMedDataByDate(req.params.date)
+      const medDatabydate = await this.medService.getMedDataByDate(req.body)
 
       console.log("meddata status : " , medDatabydate.rows)
       reply.status(200).send( medDatabydate.rows)
+
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+  }
+
+  @GET({
+    url: '/datetoday',
+    options: {},
+  })
+  async getMedDatabydateToday(req, reply) {
+
+    try {
+      const medDatabydate = await this.medService.getMedDataByDateToday()
+
+      console.log("meddata status : " , medDatabydate.rows)
+      reply.status(200).send( medDatabydate.rows)
+
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+  }
+  
+  @POST({
+    url: '/daterange',
+    options: {},
+  })
+  async getMedDatabydateRange(req, reply) {
+
+    try {
+      const medData = await this.medService.getMedDataByDateRange(req.body)
+
+      console.log("meddata status : " , medData.rows)
+      reply.status(200).send( medData.rows)
 
     } catch (error) {
       reply.status(500).send(error)

@@ -29,9 +29,32 @@ export default class MedService {
         
   }
   
-  async getMedDataByDate(date) {
+  async getMedDataByDateToday() {
     
-    const getMedData = medDataRepo.select_Some_FromMedTableby_date(date)
+    const getMedData = medDataRepo.select_Some_FromMedTableby_dateToday()
+      if (getMedData !== null) {
+        return getMedData
+      } else {
+        return "select data error"
+      }
+        
+  }
+
+  async getMedDataByDate(data) {
+    
+    const getMedData = medDataRepo.select_Some_FromMedTableby_date(data.date)
+      if (getMedData !== null) {
+        return getMedData
+      } else {
+        return "select data error"
+      }
+        
+  }
+  
+  
+  async getMedDataByDateRange(date) {
+    
+    const getMedData = medDataRepo.select_Some_FromMedTableby_dateRang(date.dateStart , date.dateEnd , date.time)
       if (getMedData !== null) {
         return getMedData
       } else {
