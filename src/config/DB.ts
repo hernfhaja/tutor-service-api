@@ -1,9 +1,9 @@
 const DB = {
-    user: "umelxkfkormziw",
-    password: "9f356d7e306a7c11706439e1f6943d7984b11f7cae76639091fe00815a50f3a3",
-    database: "dc720jj85pb71f",
+    user: "jeiwmetagjrbzl",
+    password: "b81716caba152833fee5cc76b1c40919c91298342bb0ee9d4752485f52a95788",
+    database: "dbgjs0i4bt9rkj",
     port: 5432,
-    host: "ec2-23-23-199-57.compute-1.amazonaws.com",
+    host: "ec2-54-196-105-177.compute-1.amazonaws.com",
     ssl: { require: true,  rejectUnauthorized: false } 
 }
 

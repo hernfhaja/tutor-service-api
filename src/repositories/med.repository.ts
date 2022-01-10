@@ -8,7 +8,7 @@ export default class medDataRepository {
         const sql = 'select * from meddata inner join userdata on userdata.id = uid'
         const data = await excuteQuery(sql, [])
 
-        
+        console.log(data.rows)
         return data;
     }
 
@@ -48,14 +48,14 @@ export default class medDataRepository {
    
     async insertToMedTable(medData) {
        
-        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,'${medData.medDuration}' ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp )`
+        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment   ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,${medData.medDuration} ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp,'${  medData.comment}' )`
         const data = await excuteQuery(sql, [])
         return data;
     }
 
     async updateToMedTable(  medData) {
        
-        const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medDuration   ,  medMethod   ,  medFeelling   ,  percentRelax   ,  percentFeelling , timeStamp  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , '${  medData.medDuration}' , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentFeelling},current_timestamp) WHERE id = ${ medData.id}`
+        const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , ${  medData.medDuration} , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentFeelling},current_timestamp,'${  medData.comment}' ) WHERE id = ${ medData.id}`
         const data = await excuteQuery(sql, [])
         return data;
     }
@@ -67,4 +67,7 @@ export default class medDataRepository {
         return data;
     }
     
-  }
+}
+  
+// INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling ,   comment ,timestamp   ) VALUES (2,'2022-01-02','19:30',100,'method','feelling',50,60,'comment', current_timestamp );
+        
