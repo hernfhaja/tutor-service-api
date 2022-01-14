@@ -5,7 +5,7 @@ export default class medDataRepository {
 
     async select_All_FromMedTable( ) {
        
-        const sql = 'select * from meddata inner join userdata on userdata.id = uid'
+        const sql = 'select * from userdata inner join meddata on uid = userdata.id'
         const data = await excuteQuery(sql, [])
 
         console.log(data.rows)
@@ -14,7 +14,7 @@ export default class medDataRepository {
 
     async select_Some_FromMedTableby_Id(uid) {
        
-        const sql = `SELECT * FROM meddata inner join userdata on userdata.id = uid WHERE uid = ${uid} `
+        const sql = `SELECT * FROM userdata inner join meddata on uid = userdata.id WHERE uid = ${uid} `
         const data = await excuteQuery(sql, [])
                       console.log(data)              
         return data;
@@ -22,7 +22,7 @@ export default class medDataRepository {
 
     async select_Some_FromMedTableby_dateRang(dateStart , dateEnd , time ) {
        
-        const sql = `SELECT * FROM meddata inner join userdata on userdata.id = uid WHERE time = '${time}' and date >= '${dateStart}' and date < '${dateEnd}' `
+        const sql = `SELECT * FROM userdata inner join meddata on uid = userdata.id WHERE time = '${time}' and date >= '${dateStart}' and date < '${dateEnd}' `
         const data = await excuteQuery(sql, [])
                       console.log(data)
         return data;
@@ -31,7 +31,7 @@ export default class medDataRepository {
    
     async select_Some_FromMedTableby_dateToday() {
        
-        const sql = `SELECT * FROM meddata inner join userdata on userdata.id = uid WHERE date = CURRENT_DATE`
+        const sql = `SELECT * FROM userdata inner join meddata on uid = userdata.id WHERE date = CURRENT_DATE`
         const data = await excuteQuery(sql, [])
                       console.log(data)
         return data;
@@ -39,7 +39,7 @@ export default class medDataRepository {
 
     async select_Some_FromMedTableby_date(date) {
        
-        const sql = `SELECT * FROM meddata inner join userdata on userdata.id = uid WHERE date ='${date}' `
+        const sql = `SELECT * FROM userdata inner join meddata on uid = userdata.id WHERE date ='${date}' `
         const data = await excuteQuery(sql, [])
                       console.log(data)
         return data;
