@@ -75,6 +75,17 @@ export default class MedService {
         
   }
 
+  async createComment(medData) {
+    
+    const create = medDataRepo.insertComment(medData)
+      if (create !== null) {
+        return create
+      } else {
+        return "incomplete create user"
+      }
+        
+  }
+
     
   async updateMedData(userMedData) {
     

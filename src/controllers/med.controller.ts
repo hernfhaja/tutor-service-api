@@ -83,6 +83,22 @@ export default class MedController {
       reply.status(500).send(error)
     }
   }
+
+  @POST({
+    url: '/comment',
+    options: {},
+  })
+  async insertComment(req, reply) {
+
+    try {
+      const medData = await this.medService.createComment(req.body)
+
+      reply.status(200).send({messege : "insert complete" , status : 1})
+
+    } catch (error) {
+      reply.status(500).send(error)
+    }
+}
   
   @POST({
     url: '/daterange',

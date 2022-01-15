@@ -53,7 +53,14 @@ export default class medDataRepository {
         return data;
     }
 
-    async updateToMedTable(  medData) { 
+    async insertComment(medData) {
+       
+        const sql = `UPDATE meddata SET comment = '${medData.comment}'  WHERE id = ${ medData.mid} `
+        const data = await excuteQuery(sql, [])
+        return data;
+    }
+
+    async updateToMedTable( medData) { 
        
         const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , ${  medData.medDuration} , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentfeelling},current_timestamp,'${  medData.comment}' ) WHERE id = ${ medData.id}`
         const data = await excuteQuery(sql, [])
