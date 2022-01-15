@@ -48,14 +48,14 @@ export default class medDataRepository {
    
     async insertToMedTable(medData) {
        
-        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment   ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,${medData.medDuration} ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp,'${  medData.comment}' )`
+        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment   ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,${medData.medDuration} ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentfeelling},current_timestamp,'${  medData.comment}' )`
         const data = await excuteQuery(sql, [])
         return data;
     }
 
-    async updateToMedTable(  medData) {
+    async updateToMedTable(  medData) { 
        
-        const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , ${  medData.medDuration} , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentFeelling},current_timestamp,'${  medData.comment}' ) WHERE id = ${ medData.id}`
+        const sql = `UPDATE  meddata  SET    (  uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment  ) = ( ${  medData.uid}  ,  '${  medData.date}' ,'${  medData.time}' , ${  medData.medDuration} , '${  medData.medMethod}' ,'${  medData.medFeelling}' , ${  medData.percentRelax },${  medData.percentfeelling},current_timestamp,'${  medData.comment}' ) WHERE id = ${ medData.id}`
         const data = await excuteQuery(sql, [])
         return data;
     }
