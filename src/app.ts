@@ -8,6 +8,7 @@ import configApp from './config/app'
 import configSwagger from './config/swagger'
 import db from './plugins/db';
 
+
 function build(opts: object = configApp) {
   const app = fastify(opts)
   app.register(fastifyBlipp)
@@ -15,7 +16,12 @@ function build(opts: object = configApp) {
 
   app.register(db);
 
-  app.register(bootstrap, {
+  app.register(require("fastify-cors"), {
+      origin: "*",
+      methods: ["POST","DELETE"]
+  });
+
+   app.register(bootstrap, {
     directory: resolve(__dirname, `controllers`),
     mask: /\.controller\./,
   });

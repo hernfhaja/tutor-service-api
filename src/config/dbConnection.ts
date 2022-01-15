@@ -1,17 +1,9 @@
-import { reject, resolve } from "core-js/fn/promise";
+import DB from "./DB";
 
-const mysql = require('mysql');
-const config = require('./constant.json');
+const pg = require('pg')
+const pool  = new pg.Pool (DB)
 
-const pool = mysql.createPool({
-  host: config.DB_HOST,
-  user: config.DB_USER,
-  password: config.DB_PASS,
-  port:config.DB_PORT,
-  database:config.DB_DATABASE,
-});
-
-pool.getConnection(err => {
+pool.connect(err => {
   if (err) {
     console.log("error connecting to db", err.stack)
     process.exit(1)
@@ -20,19 +12,23 @@ pool.getConnection(err => {
 })
 
 const excuteQuery = (query, arrayParams) => {
+
   return new Promise((resolve, reject) => {
+      
     try {
       pool.query(query, arrayParams, (err, data) => {
         if (err) {
-          console.log("error excuting the query")
+           console.log("error excuting the query")
+           reject(err)
+        }
+          resolve(data)
+          } )
+        }catch(err) {
           reject(err)
         }
-        resolve(data)
-      } );
-    }catch(err) {
-      reject(err)
-    }
-  });
+
+  })
+    
 };
 
 module.exports = { excuteQuery}

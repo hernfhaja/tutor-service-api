@@ -1,11 +1,11 @@
-const {excuteQuery} = require("../config/dbConnection")
+const {excuteQuery , client} = require("../config/dbConnection")
 
 
 export default class userDataRepository {
 
-    async select_All_FromUserTable(email , password ) {
+    async select_All_FromUserTable( ) {
        
-        const sql = 'select * from user'
+        const sql = 'select * from userdata'
         const data = await excuteQuery(sql, [])
                       
         return data;
@@ -13,50 +13,94 @@ export default class userDataRepository {
 
     async select_Some_FromUserTableby_Id(uid) {
        
-        const sql = `SELECT * FROM user WHERE id LIKE ${uid}`
+        const sql = `SELECT * FROM userdata WHERE id=${uid}`
         const data = await excuteQuery(sql, [])
-                      console.log(data)
-        return data;
+        console.log(data.rows[0])
+        
+        return data.rows[0];
     }
 
-    async select_Some_FromUserTableby_Email(email,pass) {
-       
-        const sql = `SELECT * FROM user WHERE email LIKE "${email}"`
+    async select_Some_FromUserTableby_phonenumber_ForLogin(phonenumber, pass) {
+        
+        const sql = `select * from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
-        console.log(data[0], pass)
+        
+        console.log( data.rows[0].password )
         
         if (data !== null) {
-                if (data[0].password == pass)
+                if (data.rows[0].password == pass)
                 {
-                    //correct password
-                return data[0].id;
+                     return data.rows[0];
                 } else {
-                    // invalid password
+                // invalid password
+                return 0
+            }
+        }
+    }
+
+    async select_Some_FromUserTableby_phonenumber_update(phonenumber,uid) {
+        
+        
+        const sql = `select phonenumber from userdata where phonenumber = '${phonenumber}'`
+        const data = await excuteQuery(sql, [])
+
+        const sql2 = `select phonenumber from userdata where id = ${uid}`
+        const data2 = await excuteQuery(sql2, [])
+
+        console.log("check phone number", data.rows[0])
+        console.log("check phone number2", data2.rows[0])
+
+        if (data.rows.length === 0) {
+            return 0
+        } else {
+            if (phonenumber == data2.rows[0].phonenumber) {
+                return 0
+            } else {
                 return 1
             }
         }
-        
+                
     }
 
-    async insertToUserTable(userData) {
-       
-        const sql = `INSERT INTO user (  email   ,  password   ,  name   ,  surname   ,  nickname   ,  grade   ,  school   ,  province   ,phoneNumber) VALUES ("${userData.email}","${userData.password}" ,"${userData.name}" ,"${userData.surname}" ,"${userData.nickname }","${userData.grade }","${userData.school}" ,"${userData.province}" ,${userData.phoneNumber})`
+    async select_Some_FromUserTableby_phonenumber_create(phonenumber) {
+        
+        
+        const sql = `select phonenumber from userdata where phonenumber = '${phonenumber}'`
         const data = await excuteQuery(sql, [])
+
+        console.log("check phone number", data.rows[0])
+
+        if (data.rows.length === 0) {
+            return 0
+        } else {    
+            return 1 
+        }
+                
+    }
+    
+    
+    async insertToUserTable(userData) {
+        const sql = `insert into userdata(  password , name , surname , nickname , grade , school , province , phonenumber , timestamp) values (  '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp )`;
+        const data = await excuteQuery(sql, [])
+        
         return data;
     }
 
     async updateToUserTable(userData) {
-       
-        const sql = `UPDATE  user  SET   email = "${userData.email}" , password = "${userData.password}" , name = "${userData.name}"  , surname = "${userData.surname}" , nickname = "${userData.nickname}" , grade = "${userData.grade}" , school = "${userData.school}" , province = "${userData.province}" , phoneNumber =  ${userData.phoneNumber} WHERE id LIKE ${userData.id}`
+        console.log("update from repo" , userData.phoneNumber)
+        const sql = `update userdata SET (  password , name , surname , nickname , grade , school , province , phonenumber , timestamp) = (  '${userData.password}' , '${userData.name}' , '${userData.surname}' , '${userData.nickname }' , '${userData.grade }' , '${userData.school}' , '${userData.province}' , '${userData.phoneNumber}' , current_timestamp ) where id = ${userData.id}`;
         const data = await excuteQuery(sql, [])
+        
         return data;
     }
 
-    
-    
-
-
-   
+    async deleteUser(uid) {
+       
+        const sql = `delete from userdata where id = ${uid}`;
+        const data = await excuteQuery(sql, [])
+        
+        return data;
+    }
 
 
   }
