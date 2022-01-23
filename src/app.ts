@@ -6,6 +6,7 @@ import { resolve } from 'path';
 
 import configApp from './config/app'
 import configSwagger from './config/swagger'
+import MedController from './controllers/med.controller';
 import db from './plugins/db';
 
 
@@ -17,7 +18,15 @@ function build(opts: object = configApp) {
   app.register(db);
 
   app.register(require("fastify-cors"), {
-      origin: true
+      origin: "*",
+    allowedHerders: [
+      "Origin",
+      "X-Requested-With",
+      "Accept",
+      "Content-Type",
+      "Authirization"
+    ],
+    methods:["GET","PUT","POST","DELETE"],
   });
 
    app.register(bootstrap, {
