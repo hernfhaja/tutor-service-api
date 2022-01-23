@@ -17,8 +17,7 @@ function build(opts: object = configApp) {
   app.register(db);
 
   app.register(require("fastify-cors"), {
-      origin: "*",
-      methods: ["POST","DELETE","UPDATE","GET"]
+      origin: true
   });
 
    app.register(bootstrap, {
@@ -30,3 +29,5 @@ function build(opts: object = configApp) {
 }
 
 export default build
+
+

@@ -76,5 +76,4 @@ export default class medDataRepository {
     
 }
   
-// INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling ,   comment ,timestamp   ) VALUES (2,'2022-01-02','19:30',100,'method','feelling',50,60,'comment', current_timestamp );
-        
+       
