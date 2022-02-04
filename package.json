@@ -6,14 +6,9 @@
   "scripts": {
     "tsc": "tsc",
     "build": "tsc",
-<<<<<<< HEAD
-    "prestart": "npm run build",
-    "start": "node -r ts-node/register ./src/server.ts ts-node",
-=======
     "postinstall": "npm run tsc",
     "prestart": "npm run build",
     "start": "node -r ts-node/register ./src/server.ts ",
->>>>>>> dev
     "dev": "nodemon -x ts-node src/config/server.ts",
     "test": "jest",
     "release": "standard-version",
@@ -27,12 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "aws-lambda-fastify": "^1.4.4",
-    "claudia-api-builder": "^4.1.2",
-=======
     "cors": "^2.8.5",
->>>>>>> dev
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fastify": "^3.15.0",
