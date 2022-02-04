@@ -48,7 +48,7 @@ export default class medDataRepository {
    
     async insertToMedTable(medData) {
        
-        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp , comment   ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,${medData.medDuration} ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentfeelling},current_timestamp,'${  medData.comment}' )`
+        const sql = `INSERT INTO meddata ( uid   , date ,  time   ,  medduration   ,  medmethod   ,  medfeelling   ,  percentrelax   ,  percentfeelling , timestamp  ) VALUES (${ medData.uid},'${  medData.date}','${  medData.time}' ,'${medData.medDuration}' ,'${  medData.medMethod}' ,'${  medData.medFeelling }',${  medData.percentRelax },${  medData.percentFeelling},current_timestamp )`
         const data = await excuteQuery(sql, [])
         return data;
     }
